@@ -1,0 +1,59 @@
+# Default configuration for semantic segmentation project
+
+# Model configuration
+model:
+  name: "fcn_resnet50"
+  device: null  # null for auto-detection
+  weights: null  # null for default weights
+  input_size: [520, 520]
+  num_classes: 21
+
+# Training configuration
+training:
+  batch_size: 4
+  learning_rate: 0.001
+  num_epochs: 100
+  weight_decay: 0.0001
+  scheduler:
+    type: "cosine"
+    warmup_epochs: 5
+
+# Data configuration
+data:
+  directory: "data"
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  augmentation:
+    horizontal_flip: true
+    vertical_flip: false
+    rotation: 15
+    brightness: 0.2
+    contrast: 0.2
+
+# Output configuration
+output:
+  directory: "outputs"
+  save_predictions: true
+  save_visualizations: true
+  save_model: true
+
+# Logging configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/segmentation.log"
+
+# Visualization configuration
+visualization:
+  figsize: [15, 5]
+  alpha: 0.6
+  color_map_seed: 42
+  save_dpi: 300
+
+# Web interface configuration
+web_app:
+  host: "0.0.0.0"
+  port: 8501
+  debug: false
+  theme: "light"
